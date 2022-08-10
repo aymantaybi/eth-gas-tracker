@@ -1,11 +1,11 @@
 {
-  "name": "gastracker",
+  "name": "eth-gas-tracker",
   "version": "1.1.0",
   "description": "Blockchain realtime gas tracker",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest",
-    "exemple": "ts-node exemples"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
