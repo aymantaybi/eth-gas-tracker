@@ -1,6 +1,6 @@
 {
   "name": "eth-gas-tracker",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Blockchain realtime gas tracker",
   "main": "dist/index.js",
   "scripts": {
