@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aymantaybi/GasTracker.git"
+    "url": "git+https://github.com/aymantaybi/eth-gas-tracker.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/aymantaybi/GasTracker/issues"
+    "url": "https://github.com/aymantaybi/eth-gas-tracker/issues"
   },
-  "homepage": "https://github.com/aymantaybi/GasTracker#readme",
+  "homepage": "https://github.com/aymantaybi/eth-gas-tracker#readme",
   "devDependencies": {
     "@types/jest": "^28.1.6",
     "@types/node": "^18.6.1",
