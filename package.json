@@ -28,7 +28,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "txpool-explorer": "^1.7.0",
+    "txpool-explorer": "^1.8.0",
     "web3": "^1.7.4"
   }
 }
