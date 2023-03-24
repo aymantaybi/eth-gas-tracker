@@ -21,30 +21,18 @@ class GasTracker {
 
   txpoolExplorer: TxpoolExplorer;
 
-  constructor({
-    host,
-    options = websocketProviderOptions,
-    websocketProvider,
-  }: Constructor) {
-    if (!host && !websocketProvider)
-      throw new Error(
-        "You need to provide either 'host' or 'websocketProvider' to the constructor "
-      );
-    this.txpoolExplorer = new TxpoolExplorer(
-      host ? { host, options } : { websocketProvider }
-    );
+  constructor({ host, options = websocketProviderOptions, websocketProvider }: Constructor) {
+    if (!host && !websocketProvider) throw new Error("You need to provide either 'host' or 'websocketProvider' to the constructor ");
+    this.txpoolExplorer = new TxpoolExplorer(host ? { host, options } : { websocketProvider });
   }
 
   public defaults() {
     return this.default;
   }
 
-  public setDefaults({
-    gasPrice = this.default.gasPrice,
-  }: {
-    gasPrice?: number;
-  }) {
+  public setDefaults({ gasPrice }: { gasPrice: number }) {
     this.default = { gasPrice };
+    this.gasPrice = { max: gasPrice, min: gasPrice };
   }
 
   watch(
@@ -56,15 +44,12 @@ class GasTracker {
     callback: (gasPrice: { max: number; min: number }) => void = () => {}
   ) {
     this.txpoolExplorer.watch({ pool: "pending", filter }, (transactions) => {
-      let gasPrices = transactions.map((transaction) =>
-        Number(transaction.gasPrice)
-      );
+      let gasPrices = transactions.map((transaction) => Number(transaction.gasPrice));
       let maxGasPrice = Math.max(...gasPrices);
       let minGasPrice = Math.min(...gasPrices);
       let { gasPrice } = this.default;
       let max = isFinite(maxGasPrice) ? maxGasPrice : gasPrice;
       let min = isFinite(minGasPrice) ? minGasPrice : gasPrice;
-      if (max == this.gasPrice.max) return;
       this.gasPrice = { max, min };
       callback(this.gasPrice);
     });
